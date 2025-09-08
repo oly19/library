@@ -14,7 +14,7 @@ html, body {
 #page-container {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 8fr 1fr;
+    grid-template-rows: 1fr 8fr 0.5fr;
     height: 100%;
     width: 100%;
 }
@@ -97,7 +97,7 @@ input {
 #book-container {
     display: grid;
     grid-template-columns: repeat(3, 250px);
-    grid-template-rows: repeat(2, 200px);
+    grid-template-rows: repeat(3, 200px);
     justify-content: center;
     gap: 30px;
 }
@@ -112,6 +112,7 @@ input {
     padding: 10px;
     border-radius: 10px;
     box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.377);
+    text-align: center;
 }
 
 .book-item-title {
