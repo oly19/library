@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Library</title>
+    <title>Tic Tac Toe</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -11,50 +11,53 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
       rel="stylesheet"
     />
-
-    
 </head>
+
 <body>
 
-    <div id="page-container">
-        <div id="header">
-            <div id="header-title">Libary</div>
-        </div>
-        
-        
-        <div id="main-container">
-            <dialog id="add-book-button-dialog">  
-                <form method="dialog" id="book-submit-form">
-                    <div class="form-entry">
-                        <label for="title">Title:</label>
-                        <input type="text" id="title" name="title" placeholder="Enter book title">
+
+    <div id="header">
+        <div id="header-title">Tic Tac Toe</div>
+    </div>
+    
+    <div id="main-container">
+
+        <!-- <div id="players-container">
+            <div class="player-container" data-player="1"></div>
+
+            <div class="player-container" data-player="2"></div>
+        </div> -->
+
+        <dialog id="input-players-names-dialogue">
+            <form method="dialog" id="input-players-form">
+                <div id="form-title">Input player names</div>
+                <div id="input-players-container">
+
+                    <div class="input-player-container">
+                        <input type="text" id="name" name="name" placeholder="Player 1">
+                        <label for="sign">X</label>
                     </div>
 
-                    <div class="form-entry">
-                        <label for="author">Author:</label>
-                        <input type="text" id="author" name="author" placeholder="Enter book author">
+                    <div class="input-player-container">
+                        <input type="text" id="name" name="name" placeholder="Player 2">
+                        <label for="sign">O</label>
                     </div>
+                </div>
+    
+                <div class="buttons">
+                    <!-- <button type="submit" id="cancel-form-button" formmethod="dialog">Cancel</button> -->
+                    <button type="submit" id="submit-form-button">Submit</button>
+                </div>
+            </form>    
+        </dialog>
 
-                    <div class="form-entry">
-                        <label for="pages">Pages:</label>
-                        <input type="number" id="pages" name="pages" placeholder="Enter book pages">
-                    </div>
-                    
-                    <div id="form-buttons">
-                        <button type="submit" id="cancel-form-button" formmethod="dialog">Cancel</button>
-                        <button type="submit" id="submit-form-button">Submit</button>
-                    </div>
-                </form>    
-            </dialog>
+        <button id="start-game-button">Start Game!</button>
 
-            <button id="add-book-button">+ Add Book</button>
-            <div id="book-container"></div>
-        </div>
- 
+    </div>
 
-        <div id="footer">
-            Footer
-        </div>
+
+    <div id="footer">
+        Footer
     </div>
 
 
