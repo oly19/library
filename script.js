@@ -129,24 +129,25 @@ function createPlayer(name, sign) {
 
 const mainContainer = document.querySelector("#main-container");
 const startGameButton = document.querySelector("#start-game-button");
+const startGameButtonDialogue = document.getElementById("input-players-names-dialogue")
 
 startGameButton.addEventListener("click", () => {
   startGameButton.remove()
-
-  const startGameButtonDialogue = document.getElementById("input-players-names-dialogue");
   startGameButtonDialogue.showModal()
 })
 
 
-const submitPlayersInput = document.getElementById("submit-form-button");
-submitPlayersInput.addEventListener("click", () => {
+function createBoardContainer () {
   const gameBoardContainer = document.createElement("div");
   gameBoardContainer.id = "game-board-container";
   gameBoardContainer.style.display = "grid";
   gameBoardContainer.style.gridTemplateColumns = "repeat(3, minmax(100px, 150px))";
   gameBoardContainer.style.gridTemplateRows = "repeat(3, minmax(100px, 150px))";
   mainContainer.appendChild(gameBoardContainer)
+  return gameBoardContainer
+}
 
+function setCellAttribute (container) {
   for (let i = 0; i < 9; i++) {
     const gameBoardCell = document.createElement("div");
     gameBoardCell.className = "game-board-cell";
@@ -156,26 +157,74 @@ submitPlayersInput.addEventListener("click", () => {
 
     gameBoardCell.style.border = "solid 1px black";
 
-    gameBoardContainer.appendChild(gameBoardCell);
+    container.appendChild(gameBoardCell);
   }
+}
 
-  gameBoardContainer.querySelectorAll(".game-board-cell[data-row='1']").forEach((element) => {
-    element.style["border-top"] = "none"
+function adjustCellBorder (container) {
+  container.querySelectorAll(".game-board-cell[data-row='1']").forEach((element) => {
+  element.style["border-top"] = "none"
   })
-  gameBoardContainer.querySelectorAll(".game-board-cell[data-row='3']").forEach((element) => {
+  container.querySelectorAll(".game-board-cell[data-row='3']").forEach((element) => {
     element.style["border-bottom"] = "none"
   })
-  gameBoardContainer.querySelectorAll(".game-board-cell[data-column='1']").forEach((element) => {
+  container.querySelectorAll(".game-board-cell[data-column='1']").forEach((element) => {
     element.style["border-left"] = "none"
   })  
-  gameBoardContainer.querySelectorAll(".game-board-cell[data-column='3']").forEach((element) => {
+  container.querySelectorAll(".game-board-cell[data-column='3']").forEach((element) => {
     element.style["border-right"] = "none"
   })
+}
+
+function getPlayersData () {
+  const container = document.querySelector(".input-player-container");
+  
+  return {
+    "player1": {
+      "name": container.querySelector("#player1").value || "Player 1",
+      "sign": container.querySelector("#player1 + label").textContent
+    },
+    "player2": {
+      "name": container.querySelector("#player2").value || "Player 2",
+      "sign": container.querySelector("#player2 + label").textContent
+    }
+  }
+}
+
+function createPlayerScoreContainer (player1Name, player2Name) {
+  const playerScoreDiv = document.createElement("div");
+  const player1ScoreDiv = document.createElement("div");
+  const player2ScoreDiv = document.createElement("div");
+
+  playerScoreDiv.id = "players-score-container";
+  player1ScoreDiv.id = "player1-score-container";
+  player2ScoreDiv.id = "player2-score-container";
+  
+  player1ScoreDiv.textContent = player1Name;
+  player2ScoreDiv.textContent = player2Name;
+
+
+  playerScoreDiv.appendChild(player1ScoreDiv);
+  playerScoreDiv.appendChild(player2ScoreDiv);
+  mainContainer.appendChild(playerScoreDiv)
+
+
+}
+
+const submitPlayersInput = document.getElementById("submit-form-button");
+submitPlayersInput.addEventListener("click", () => {
+  const playersData = getPlayersData()
+  const gameBoardContainer = createBoardContainer()
+  setCellAttribute(gameBoardContainer)
+  adjustCellBorder(gameBoardContainer)
+  createPlayerScoreContainer(player1Name, player2Name)
 })
 
 
-const player1 = createPlayer("Omarrrr", "X");
-const player2 = createPlayer("Ali", "O");
+
+
+// const player1 = createPlayer("Omar", "X");
+// const player2 = createPlayer("Ali", "O");
 
 
 
