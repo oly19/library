@@ -177,38 +177,61 @@ function adjustCellBorder (container) {
 }
 
 function getPlayersData () {
-  const container = document.querySelector(".input-player-container");
+  const playersContainer = document.querySelector("#input-players-container")
+  const player1Container = playersContainer.querySelector("div:first-child");
+  const player2Container = playersContainer.querySelector("div:last-child");
   
   return {
     "player1": {
-      "name": container.querySelector("#player1").value || "Player 1",
-      "sign": container.querySelector("#player1 + label").textContent
+      "name": player1Container.querySelector("#player1").value || "Player 1",
+      "sign": player1Container.querySelector("#player1 + label").textContent
     },
     "player2": {
-      "name": container.querySelector("#player2").value || "Player 2",
-      "sign": container.querySelector("#player2 + label").textContent
+      "name": player2Container.querySelector("#player2").value || "Player 2",
+      "sign": player2Container.querySelector("#player2 + label").textContent
     }
   }
 }
 
 function createPlayerScoreContainer (player1Name, player2Name) {
   const playerScoreDiv = document.createElement("div");
-  const player1ScoreDiv = document.createElement("div");
-  const player2ScoreDiv = document.createElement("div");
+
+  const player1Container = document.createElement("div");
+  const player2Container = document.createElement("div");
+
+  const player1ContainerName = document.createElement("div");
+  const player2ContainerName = document.createElement("div");
+  
+  const player1ContainerScore = document.createElement("div");
+  const player2ContainerScore = document.createElement("div");
 
   playerScoreDiv.id = "players-score-container";
-  player1ScoreDiv.id = "player1-score-container";
-  player2ScoreDiv.id = "player2-score-container";
+
+  player1Container.id = "player1-container";
+  player2Container.id = "player2-container";
+
+  player1ContainerName.id = "player1-container-name";
+  player2ContainerName.id = "player2-container-name";
   
-  player1ScoreDiv.textContent = player1Name;
-  player2ScoreDiv.textContent = player2Name;
+  player1ContainerScore.id = "player1-container-score";
+  player2ContainerScore.id = "player2-container-score";
+  
+  player1ContainerName.textContent = player1Name;
+  player2ContainerName.textContent = player2Name;
 
+  player1ContainerScore.textContent = "0";
+  player2ContainerScore.textContent = "0";
 
-  playerScoreDiv.appendChild(player1ScoreDiv);
-  playerScoreDiv.appendChild(player2ScoreDiv);
+  player1Container.appendChild(player1ContainerName);
+  player1Container.appendChild(player1ContainerScore);
+
+  player2Container.appendChild(player2ContainerName);
+  player2Container.appendChild(player2ContainerScore);
+
+  playerScoreDiv.appendChild(player1Container);
+  playerScoreDiv.appendChild(player2Container);
+
   mainContainer.appendChild(playerScoreDiv)
-
-
 }
 
 const submitPlayersInput = document.getElementById("submit-form-button");
@@ -217,7 +240,10 @@ submitPlayersInput.addEventListener("click", () => {
   const gameBoardContainer = createBoardContainer()
   setCellAttribute(gameBoardContainer)
   adjustCellBorder(gameBoardContainer)
-  createPlayerScoreContainer(player1Name, player2Name)
+  createPlayerScoreContainer(
+    playersData["player1"]["name"],
+    playersData["player2"]["name"]
+  )
 })
 
 

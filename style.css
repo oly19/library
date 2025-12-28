@@ -149,6 +149,20 @@ input {
 }
 
 #players-score-container {
-    display: grid;
+    display: flex;
+    
     gap: 40px;
+}
+
+#players-score-container > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    background-color: white;
+    width: 200px;
+    padding: 10px 15px;
+    border: 1px black solid;
+    border-radius: 10px;
 }
