@@ -234,9 +234,8 @@ function createPlayerScoreContainer (player1Name, player2Name) {
   mainContainer.appendChild(playerScoreDiv)
 }
 
-const submitPlayersInput = document.getElementById("submit-form-button");
-submitPlayersInput.addEventListener("click", () => {
-  const playersData = getPlayersData()
+function initGame() {
+	const playersData = getPlayersData()
   const gameBoardContainer = createBoardContainer()
   setCellAttribute(gameBoardContainer)
   adjustCellBorder(gameBoardContainer)
@@ -244,7 +243,22 @@ submitPlayersInput.addEventListener("click", () => {
     playersData["player1"]["name"],
     playersData["player2"]["name"]
   )
+	return gameBoardContainer
+}
+
+let gameBoardContainer
+
+const submitPlayersInput = document.getElementById("submit-form-button");
+submitPlayersInput.addEventListener("click", () => {
+	gameBoardContainer = initGame()
 })
+
+gameBoardContainer.children.addEventListener(
+    "click",
+    () => {
+        console.log("yes")
+    }
+)
 
 
 
